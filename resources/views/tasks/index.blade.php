@@ -13,7 +13,7 @@
             
             <!-- Task Name -->
             <div class="form-group">
-                {!! Form::label('task-name', 'Task', ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('task-name', trans('labels.task'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('name', '', ['id' => 'task-name', 'class' => 'form-control']) !!}
                 </div>
@@ -22,7 +22,7 @@
             <!-- Add Task Button -->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    {!! Form::button('<i class="fa fa-plus"></i> Add Task', ['type' => 'submit', 'class' => 'btn btn-success']) !!}
+                    {!! Form::button('<i class="fa fa-plus"></i> '.trans('buttons.add_task'), ['type' => 'submit', 'class' => 'btn btn-success']) !!}
                 </div>
             </div>
         {!! Form::close() !!}
@@ -53,7 +53,10 @@
                                 </td>
 
                                 <td>
-                                    <!-- TODO: Delete Task -->
+                                    <!-- Delete Task -->
+                                    {!! Form::open(['method' => 'DELETE', 'action' => ['TaskController@destroy', 'task' => $task]]) !!}
+                                        {!! Form::button('<i class="fa fa-btn fa-trash"></i> '.trans('buttons.delete'), ['type' => 'submit', 'id' => 'delete-task-{{ $task->id }}', 'class' => 'btn btn-danger']) !!}
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                         @endforeach

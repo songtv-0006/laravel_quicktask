@@ -50,6 +50,15 @@ class TaskController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/tasks');
+        return redirect('/task');
+    }
+
+    public function destroy(Request $request, Task $task)
+    {
+        $this->authorize('destroy', $task);
+        
+        $task->delete();
+
+        return redirect('/task');
     }
 }
